@@ -33,8 +33,8 @@ namespace LOVE_Editor
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Editor));
             this.Block = new System.Windows.Forms.PictureBox();
             this.BlockMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.propertiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.mousePos = new System.Windows.Forms.Label();
             this.seeoutput = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Block)).BeginInit();
@@ -54,23 +54,23 @@ namespace LOVE_Editor
             // BlockMenu
             // 
             this.BlockMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.propertiesToolStripMenuItem,
-            this.deleteToolStripMenuItem});
+            this.deleteToolStripMenuItem,
+            this.deleteToolStripMenuItem1});
             this.BlockMenu.Name = "contextMenuStrip1";
-            this.BlockMenu.Size = new System.Drawing.Size(128, 48);
+            this.BlockMenu.Size = new System.Drawing.Size(142, 48);
             this.BlockMenu.Text = "Block Menu";
-            // 
-            // propertiesToolStripMenuItem
-            // 
-            this.propertiesToolStripMenuItem.Name = "propertiesToolStripMenuItem";
-            this.propertiesToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
-            this.propertiesToolStripMenuItem.Text = "Properties";
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
-            this.deleteToolStripMenuItem.Text = "Delete";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.deleteToolStripMenuItem.Text = "Select Image";
+            // 
+            // deleteToolStripMenuItem1
+            // 
+            this.deleteToolStripMenuItem1.Name = "deleteToolStripMenuItem1";
+            this.deleteToolStripMenuItem1.Size = new System.Drawing.Size(141, 22);
+            this.deleteToolStripMenuItem1.Text = "Delete";
             // 
             // mousePos
             // 
@@ -106,7 +106,7 @@ namespace LOVE_Editor
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Editor";
-            this.Text = "LOVE Editor 1.0";
+            this.Text = "LOVE Editor 1.1";
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Editor_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Editor_MouseMove);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Editor_MouseUp);
@@ -121,9 +121,9 @@ namespace LOVE_Editor
         public System.Windows.Forms.Label mousePos;
         public System.Windows.Forms.PictureBox Block;
         private System.Windows.Forms.ContextMenuStrip BlockMenu;
-        private System.Windows.Forms.ToolStripMenuItem propertiesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private System.Windows.Forms.Button seeoutput;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem1;
     }
 }
 

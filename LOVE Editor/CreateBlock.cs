@@ -18,13 +18,7 @@ namespace LOVE_Editor
             newBlock = new();
             newBlock.Parent = editor;
             newBlock.ContextMenuStrip = editor.Block.ContextMenuStrip;
-            foreach (ToolStripMenuItem item in newBlock.ContextMenuStrip.Items)
-            {
-                if (item.ToString() == "Delete")
-                {
-                    item.Click += (sender, e) => Delete();
-                }
-            }
+            AddFunction();
         }
 
         private Editor editor;
@@ -66,16 +60,62 @@ namespace LOVE_Editor
             newBlock = new();
             newBlock.Parent = editor;
             newBlock.ContextMenuStrip = editor.Block.ContextMenuStrip;
-            foreach(ToolStripMenuItem item in newBlock.ContextMenuStrip.Items)
+            AddFunction();
+        }
+
+        public void AddFunction()
+        {
+            foreach (ToolStripMenuItem item in newBlock.ContextMenuStrip.Items)
             {
                 if (item.ToString() == "Delete")
                 {
-                    item.Click += (sender, e) => Delete();
+                    item.Click += Delete;
+                }
+                if (item.ToString() == "Select Image")
+                {
+                    item.Click += SelectImage;
                 }
             }
         }
 
-        public void Delete()
+
+        private void SelectImage(object sender, EventArgs e)
+        {
+            var touch = editor.GetChildAtPoint(editor.PointToClient(Cursor.Position));
+            OpenFileDialog openFileDialog1 = new OpenFileDialog
+            {
+                InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
+                Title = "Select an Image",
+
+                CheckFileExists = true,
+                CheckPathExists = true,
+
+                DefaultExt = ".png",
+                Filter = "BMP|*.bmp|PNG|*.png|GIF|*.gif|JPG|*.jpg;*.jpeg|TIFF|*.tif;*.tiff",
+                FilterIndex = 2
+            };
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                if (touch == null) return;
+                if (touch.GetType() != typeof(PictureBox)) return;
+                if (!Program.output.outputlabel.Text.Contains($"\r\nlove.graphics.rectangle('fill',{touch.Location.X}, {touch.Location.Y}, {touch.Size.Width}, {touch.Size.Height})")) return;
+                try
+                {
+                    touch.BackgroundImage = Image.FromFile(openFileDialog1.FileName);
+                }
+                catch
+                {
+                    Program.exception.Show();
+                    Program.exception.ErrorText($"Check if the image is valid!");
+                }
+                return;
+            }
+            return;
+        }
+
+
+        public void Delete(object sender, EventArgs e)
         {
             var touch = editor.GetChildAtPoint(editor.PointToClient(Cursor.Position));
             if (touch == null) return;
